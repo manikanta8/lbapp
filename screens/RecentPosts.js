@@ -2,15 +2,15 @@ import React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import { withNavigation } from 'react-navigation';
 
-class PostScreen extends React.Component {
+class RecentPosts extends React.Component {
   return (
     <ScrollView style={styles.container}>
     </ScrollView>
   );
 }
 
-PostScreen.navigationOptions = {
-  title: 'Posts',
+RecentPosts.navigationOptions = {
+  title: 'Recent Posts',
 };
 
 const styles = StyleSheet.create({
@@ -21,4 +21,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withNavigation(PostScreen);
+export default withNavigation(RecentPosts);

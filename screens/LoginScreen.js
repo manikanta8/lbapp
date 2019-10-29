@@ -3,39 +3,38 @@ import { withNavigation } from 'react-navigation';
 import {
   Image,
   Platform,
-  ScrollView,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
-  Button
+  ScrollView
 } from 'react-native';
 
 import { MonoText } from '../components/StyledText';
+import deviceWindow from '../constants/Layout'
+import { Button, Text, Input} from 'react-native-elements'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+
 
 class LoginScreen extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <ScrollView
-          style={styles.container}
-          contentContainerStyle={styles.contentContainer}>
-          <View style={styles.welcomeContainer}>
-            <Image
-              source={
-                __DEV__
-                  ? require('../assets/images/robot-dev.png')
-                  : require('../assets/images/robot-prod.png')
-              }
-              style={styles.welcomeImage}
-            />
-            <Button
-               title="Login"
-               onPress={() => this.props.navigation.navigate('Home')}
-            />
-          </View>
-        </ScrollView>
-        </View>
+      <KeyboardAwareScrollView
+       style={styles.container}>
+      <Image source={require('../assets/images/ic_launcher.png')}
+        style= {styles.welcomeImageContainer}/>
+      <Text h3 h3Style = {styles.labelStyle}>WELCOME</Text>
+      <View style = {styles.welcomeContainer}>
+      <View style = {styles.inputContainer}>
+      <Text  h4 style = {styles.textStyle}>+91</Text>
+      <Input placeholder='Enter Mobile No'></Input>
+      </View>
+      <Button
+         style = {styles.buttonStyle}
+         title="Login"
+         onPress={() => this.props.navigation.navigate('Home')}
+      />
+      </View>
+      </KeyboardAwareScrollView>
     )}
 }
 
@@ -47,20 +46,34 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  contentContainer: {
-    paddingTop: 30,
+  buttonStyle: {
+    margin: 5,
+    width: 120,
+    height: 120,
+    alignSelf: 'center',
+
+  },
+  welcomeImageContainer: {
+    marginTop: deviceWindow.window.height/6,
+    height: deviceWindow.window.height/4,
+    width: deviceWindow.window.width/2,
+    alignSelf: 'center',
+  },
+  labelStyle: {
+    color: 'orange',
+    alignSelf: 'center',
+  },
+  textStyle: {
+    margin: 10
+  },
+  inputContainer: {
+    flexDirection: 'row',
+    margin: 25
   },
   welcomeContainer: {
-    alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 20,
-  },
-  welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: 'contain',
-    marginTop: 3,
-    marginLeft: -10,
-  }})
+    flex: 1,
+    alignSelf: 'center',
+  }});
+
 
   export default withNavigation(LoginScreen);

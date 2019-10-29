@@ -4,34 +4,53 @@ import {
   Platform,
   ScrollView,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
 } from 'react-native';
-
+import deviceWindow from '../constants/Layout'
+import { Button, Input, CheckBox } from 'react-native-elements'
 import { MonoText } from '../components/StyledText';
 import { withNavigation } from 'react-navigation';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+
 
 
 class RegisterScreen extends React.Component{
+  state = {
+    checked: false
+    };
   render() {
     return (
-      <View style={styles.container}>
-        <ScrollView
+        <KeyboardAwareScrollView
           style={styles.container}
           contentContainerStyle={styles.contentContainer}>
-          <View style={styles.welcomeContainer}>
-            <Image
-              source={
-                __DEV__
-                  ? require('../assets/images/robot-dev.png')
-                  : require('../assets/images/robot-prod.png')
-              }
-              style={styles.welcomeImage}
-            />
+          <Image
+          source={require('../assets/images/ic_launcher.png')}
+          style={styles.welcomeImageContainer}/>
+          <View style= {styles.registerContainer}>
+          <Input placeholder='Enter Name'
+          label = 'Name'
+          />
+          <Input placeholder='Enter Mobile No'
+          label = 'Mobile No'
+          containerStyle = {styles.inputContainer}/>
+          <Input placeholder='Enter Address'
+          label = 'Address'
+          containerStyle = {styles.inputContainer}/>
           </View>
-          </ScrollView>
-      </View>)
+          <View>
+          <CheckBox title='User'
+          checked={this.state.checked}/>
+          <CheckBox title='Real Estate Broker/Agent'
+          checked={this.state.checked}/>
+          <CheckBox title='Classified Agent/Reporter'
+          checked={this.state.checked}/>
+          </View>
+          <Button
+          style = {styles.buttonStyle}
+          title = 'REGISTER'>
+          </Button>
+          </KeyboardAwareScrollView>)
 
   }
 }
@@ -48,19 +67,22 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   contentContainer: {
-    paddingTop: 30,
+    paddingTop: 10,
   },
-  welcomeContainer: {
-    alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 20,
+  welcomeImageContainer: {
+    marginTop: 30,
+    height: deviceWindow.window.height/4,
+    width: deviceWindow.window.width/2,
+    alignSelf: 'center',
   },
-  welcomeImage: {
-    width: 100,
-    height: 80,
-    resizeMode: 'contain',
-    marginTop: 3,
-    marginLeft: -10,
+  registerContainer: {
+    margin: 10
+  },
+  inputContainer: {
+    marginTop: 10
+  },
+  buttonStyle: {
+    margin: 10
   }
 });
 
